@@ -198,6 +198,7 @@ const Home: NextPage = () => {
 
       const _presaleStarted = checkIfPresaleStarted();
 
+      // @ts-ignore
       if (_presaleStarted) {
         checkIfPresaleEnded();
         console.log("checking");
@@ -215,6 +216,8 @@ const Home: NextPage = () => {
         }
       }, 5 * 1000);
     }
+    // };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletConnected]);
 
   const renderButton = () => {
@@ -225,48 +228,48 @@ const Home: NextPage = () => {
         </button>
       );
     }
-  };
 
-  if (loading) {
-    return <button className={styles.button}>Loading...</button>;
-  }
+    if (loading) {
+      return <button className={styles.button}>Loading...</button>;
+    }
 
-  if (isOwner && !presaleStarted) {
-    return (
-      <button className={styles.button} onClick={startPresale}>
-        Start Presale!
-      </button>
-    );
-  }
-
-  if (!presaleStarted) {
-    return (
-      <div>
-        <div className={styles.description}>Presale has not started!</div>
-      </div>
-    );
-  }
-
-  if (presaleStarted && !presaleEnded) {
-    return (
-      <div>
-        <div className={styles.description}>
-          Presale has started!!! If your address is whitelisted. Mint a Lion!
-        </div>
-        <button className={styles.button} onClick={presaleMint}>
-          Presale Mint
+    if (isOwner && !presaleStarted) {
+      return (
+        <button className={styles.button} onClick={startPresale}>
+          Start Presale!
         </button>
-      </div>
-    );
-  }
+      );
+    }
 
-  if (presaleEnded && presaleStarted) {
-    return (
-      <button className={styles.button} onClick={publicMint}>
-        Public Mint
-      </button>
-    );
-  }
+    if (!presaleStarted) {
+      return (
+        <div>
+          <div className={styles.description}>Presale has not started!</div>
+        </div>
+      );
+    }
+
+    if (presaleStarted && !presaleEnded) {
+      return (
+        <div>
+          <div className={styles.description}>
+            Presale has started!!! If your address is whitelisted. Mint a Lion!
+          </div>
+          <button className={styles.button} onClick={presaleMint}>
+            Presale Mint
+          </button>
+        </div>
+      );
+    }
+
+    if (presaleEnded && presaleStarted) {
+      return (
+        <button className={styles.button} onClick={publicMint}>
+          Public Mint
+        </button>
+      );
+    }
+  };
 
   return (
     <div>
@@ -290,14 +293,16 @@ const Home: NextPage = () => {
         <div>
           <Image
             className={styles.image}
-            src="./Lions/0.svg"
+            src="/Lions/0.svg"
             alt="The lions SVG"
+            width={300}
+            height={200}
           />
         </div>
       </div>
 
       <footer className={styles.footer}>
-        Made with &#100084 by Simon Samuel
+        Made with &#128153; by Simon Samuel
       </footer>
     </div>
   );
