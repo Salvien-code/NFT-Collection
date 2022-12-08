@@ -5,8 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IWhitelist.sol";
 
-contract Lions is ERC721Enumerable, Ownable {
-    string _baseTokenURI;
+contract LionNFT is ERC721Enumerable, Ownable {
     uint256 public _price = 0.01 ether;
 
     bool public _paused;
@@ -25,10 +24,7 @@ contract Lions is ERC721Enumerable, Ownable {
         _;
     }
 
-    constructor(string memory baseURI, address whitelistContract)
-        ERC721("Lions", "LN")
-    {
-        _baseTokenURI = baseURI;
+    constructor(address whitelistContract) ERC721("Lions", "LN") {
         whitelist = IWhitelist(whitelistContract);
     }
 
@@ -62,10 +58,6 @@ contract Lions is ERC721Enumerable, Ownable {
         require(msg.value >= _price, "Ether sent is not correct");
         tokenIds += 1;
         _safeMint(msg.sender, tokenIds);
-    }
-
-    function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
     }
 
     function setPaused(bool val) public onlyOwner {

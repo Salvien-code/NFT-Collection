@@ -3,10 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { Contract, providers, Signer, utils } from "ethers";
 import Web3Modal from "web3modal";
-import {
-  NFT_CONTRACT_ABI,
-  NFT_CONTRACT_ADDRESS,
-} from "../../smart-contracts/Constants";
+import { NFT_CONTRACT_ABI, NFT_CONTRACT_ADDRESS } from "../Constants";
 import Head from "next/head";
 import Image from "next/image";
 
