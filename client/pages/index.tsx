@@ -100,7 +100,7 @@ const Home: NextPage = () => {
         await getOwner();
       }
       setPresaleStarted(_presaleStarted);
-      return _presaleStarted;
+      return _presaleStarted as boolean;
     } catch (err) {
       console.error(err);
       return false;
@@ -195,10 +195,9 @@ const Home: NextPage = () => {
 
       const _presaleStarted = checkIfPresaleStarted();
 
-      // @ts-ignore
+      //@ts-ignore
       if (_presaleStarted) {
         checkIfPresaleEnded();
-        console.log("checking");
       }
 
       getTokenIdsMinted();
@@ -212,8 +211,11 @@ const Home: NextPage = () => {
           }
         }
       }, 5 * 1000);
+
+      setInterval(async function () {
+        await getTokenIdsMinted();
+      }, 5 * 1000);
     }
-    // };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletConnected]);
 
