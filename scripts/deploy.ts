@@ -12,14 +12,14 @@ async function main() {
 
   console.log(`NFT Collection Contract Address: ${lionNftContract.address}`);
 
-  console.log(`Waiting for a minute before verifying Consumer contract`);
+  console.log(`Waiting for a minute before verifying NFT contract`);
   await setTimeout(60000);
 
   await run("verify:verify", {
     address: lionNftContract.address,
     constructorArguments: [WHITELIST_CONTRACT_ADDRESS],
   });
-  console.log(`Verified NFT Collection contract on PolygonScan`);
+  console.log(`Verified NFT Collection contract on Etherscan`);
 }
 
 main().catch((error) => {
